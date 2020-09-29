@@ -23,7 +23,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.babanomania.pdfscanner.provider"
+            android:authorities="com.example.scan.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
