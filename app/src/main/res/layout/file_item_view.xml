@@ -17,12 +17,13 @@
         android:adjustViewBounds="true"
         android:contentDescription="Icon"
         android:scaleType="centerInside"
-        app:srcCompat="@drawable/ic_category_receipt" />
+        app:srcCompat="@drawable/show_icon" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
 
         <TextView
             android:id="@+id/fileName"
@@ -30,7 +31,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="file label"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -38,7 +39,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/categoryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -46,7 +47,7 @@
                 android:drawablePadding="2dp"
                 android:paddingRight="10dp"
                 android:text="category"
-                android:textSize="12sp" />
+                android:textSize="15sp" />-->
 
             <TextView
                 android:id="@+id/timeLabel"
@@ -56,7 +57,7 @@
                 android:drawablePadding="2dp"
                 android:paddingLeft="10dp"
                 android:text="01-04-2019 22:10"
-                android:textSize="12sp" />
+                android:textSize="15sp" />
 
 
             <TextView
@@ -66,12 +67,22 @@
                 android:drawableLeft="@drawable/ic_dot"
                 android:drawablePadding="2dp"
                 android:paddingLeft="10dp"
-                android:text="2 Pages"
+                android:text="1 Page"
                 android:textSize="12sp" />
-
+            <!--<Button
+                android:layout_width="18dp"
+                android:layout_height=18dp">
+        </Button>
+-->
         </LinearLayout>
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/sharefile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:drawableRight="@drawable/ic_menu_share"
+        android:onClick="Clickedit" />
 
 </LinearLayout>

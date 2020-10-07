@@ -25,11 +25,11 @@ public class DialogUtil {
             fileNameText.setText(promptFileName);
         }
 
-        final Spinner categorySelection = mView.findViewById(R.id.userInputCategory);
+      /* final Spinner categorySelection = mView.findViewById(R.id.userInputCategory);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context, R.array.category_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySelection.setAdapter(adapter);
-
+/*
         if( promptCategory != null ){
             String[] categoryArray = mView.getResources().getStringArray( R.array.category_array );
             for( int i = 0; i < categoryArray.length; i++ ){
@@ -37,7 +37,7 @@ public class DialogUtil {
                     categorySelection.setSelection(i);
                 }
             }
-        }
+        }*/
 
         alertDialogBuilderUserInput
                 .setCancelable(false)
@@ -45,7 +45,8 @@ public class DialogUtil {
                     public void onClick(DialogInterface dialogBox, int id) {
                         callback.onSave(
                                 fileNameText.getText().toString(),
-                                categorySelection.getSelectedItem().toString()
+                                fileNameText.getText().toString()
+                                /* categorySelection.getSelectedItem().toString()*/
                         );
                     }
                 })

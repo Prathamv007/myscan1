@@ -20,7 +20,7 @@ public class SplashScreen extends AppCompatActivity {
 
         DocumentDatabase.getInstance( getApplicationContext() );
 
-        if (restorePrefData()) {
+        /*if (restorePrefData()) {*/
 
             new Handler().postDelayed(new Runnable() {
 
@@ -35,7 +35,7 @@ public class SplashScreen extends AppCompatActivity {
             }, SPLASH_TIME_OUT);
 
 
-        } else {
+        /* }*/ /*else {
 
             new Handler().postDelayed(new Runnable() {
 
@@ -48,12 +48,12 @@ public class SplashScreen extends AppCompatActivity {
 
                 }
             }, SPLASH_TIME_OUT);
-        }
+        }*/
     }
 
-    private boolean restorePrefData() {
+   /* private boolean restorePrefData() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
         Boolean isIntroActivityOpnendBefore = pref.getBoolean("isIntroOpnend",false);
         return  isIntroActivityOpnendBefore;
-    }
+    }*/
 }

@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:background="@color/colorPrimary">
+        android:background="#3F69FF">
 
         <Button
             android:id="@+id/original"

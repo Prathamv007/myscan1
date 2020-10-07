@@ -41,7 +41,7 @@ public class FLViewHolder extends RecyclerView.ViewHolder {
         this.categoryIcon =  itemView.findViewById(R.id.imageView);
         this.textViewLabel = itemView.findViewById(R.id.fileName);
         this.textViewTime = itemView.findViewById(R.id.timeLabel);
-        this.textViewCategory = itemView.findViewById(R.id.categoryLabel);
+        //   this.textViewCategory = itemView.findViewById(R.id.categoryLabel);
         this.textPageCount = itemView.findViewById(R.id.pageCount);
         this.itemLayout = itemView.findViewById(R.id.relativeLayout);
         this.adapter = adapter;
@@ -82,7 +82,7 @@ public class FLViewHolder extends RecyclerView.ViewHolder {
 
         this.textViewLabel.setText( document.getName() );
         this.textViewTime.setText( document.getScanned() );
-        this.textViewCategory.setText( document.getCategory() );
+        // this.textViewCategory.setText( document.getCategory() );
 
         if( document.getPageCount() > 1 ) {
             this.textPageCount.setVisibility( View.VISIBLE );
@@ -103,7 +103,7 @@ public class FLViewHolder extends RecyclerView.ViewHolder {
 
         Integer resourceId = categoryImageMap.get( document.getCategory() );
         if( resourceId == null ){
-            this.categoryIcon.setImageResource(R.drawable.ic_category_others);
+            this.categoryIcon.setImageResource(R.drawable.side_icon);
 
         } else {
 

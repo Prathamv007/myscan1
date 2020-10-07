@@ -23,7 +23,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="Add Page"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/blue"
             android:gravity="center" />
 
 </LinearLayout>

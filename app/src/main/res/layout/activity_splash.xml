@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+   >
 
     <ImageView
         android:id="@+id/splash_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="236dp"
+        android:layout_height="348dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/ic_app_logo"
+        android:src="@drawable/show_icon"
         tools:layout_editor_absoluteX="141dp"
         tools:layout_editor_absoluteY="244dp" />
 
@@ -32,16 +32,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-thin"
-            android:text="Clean "
+            android:text="el docer "
             android:textSize="30sp" />
 
-        <TextView
+        <!--<TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
             android:text="Scan"
-            android:textSize="30sp" />
+            android:textSize="30sp" />-->
 
         <Space
             android:layout_width="wrap_content"

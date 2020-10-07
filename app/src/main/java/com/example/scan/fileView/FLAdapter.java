@@ -110,6 +110,9 @@ public class FLAdapter extends RecyclerView.Adapter<FLViewHolder> {
                     mode.finish();
                     return true;
 
+
+
+
               /*  case R.id.menu_ocr:
 
                     final Document docToOcr = selectedItems.get(0);
