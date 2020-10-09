@@ -2,17 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/menu_search"
+    <item
+        android:id="@+id/menu_search"
         android:icon="@drawable/ic_menu_search"
         android:iconTint="@android:color/white"
         android:onClick="goToSearch"
         android:title="@string/menu_search"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
 
-    <item android:id="@+id/show_prefrences"
+    <item
+        android:id="@+id/show_prefrences"
         android:iconTint="@android:color/white"
+        android:icon="@drawable/ic_settings"
         android:onClick="goToPreferences"
         android:title="@string/menu_settings"
-        app:showAsAction="never"/>
+        app:showAsAction="always" />
 
 </menu>
