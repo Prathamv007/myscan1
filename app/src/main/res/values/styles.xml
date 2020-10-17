@@ -13,7 +13,7 @@
 
     </style>
 
-    <style name="AppThemeSearch" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppThemeSearch" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/polygonViewCircleStrokeColor</item>
         <item name="colorPrimaryDark">@color/blue</item>
         <item name="colorAccent">@android:color/white</item>

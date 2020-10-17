@@ -12,7 +12,7 @@
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/default_activity_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="top"
         android:backgroundTint="@color/buttoncolor"
         app:menu="@menu/default_menu" />
@@ -21,7 +21,7 @@
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="bottom"
         android:backgroundTint="@color/buttoncolor"
         app:fabAlignmentMode="end"
@@ -43,25 +43,10 @@
 
 
     <RelativeLayout
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <!--Button
-            android:id="@+id/scanBtn"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="223dp"
-            android:layout_height="92dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/margin_bottom_button"
-            android:background="@drawable/capsule_bg"
-            android:drawableStart="@drawable/ic_fab_camera"
-            android:onClick="openCamera"
-            android:orientation="horizontal"
-            android:padding="@dimen/bottom_bar_padding"
-            android:text="scan"
-            android:textColor="@android:color/black" /-->
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rw"

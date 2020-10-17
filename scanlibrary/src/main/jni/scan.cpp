@@ -323,7 +323,7 @@ JNIEXPORT jobject JNICALL Java_com_scanlibrary_ScanActivity_getBWBitmap
 //    float beta = 0;
 //    dst.convertTo(dst, -1, alpha, beta);
 
-    threshold(dst,dst,0,255,THRESH_BINARY | THRESH_OTSU);
+    threshold(dst,dst,160,255,THRESH_BINARY | THRESH_OTSU);
 
 
     //get source bitmap's config

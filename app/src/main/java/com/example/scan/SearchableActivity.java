@@ -1,4 +1,4 @@
-package com.example.scan;
+ package com.example.scan;
 
 import android.app.SearchManager;
 import android.app.SearchableInfo;
@@ -24,6 +24,7 @@ import com.example.scan.persistance.DocumentViewModel;
 import com.example.scan.utils.UIUtil;
 
 import java.util.List;
+import java.util.Objects;
 
 public class SearchableActivity extends AppCompatActivity {
 
@@ -36,7 +37,7 @@ public class SearchableActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchable);
 
-        getSupportActionBar().setTitle(null);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(null);
 
         this.recyclerView = findViewById(R.id.rwSearch);
 
