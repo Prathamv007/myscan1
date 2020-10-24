@@ -94,7 +94,7 @@ public class IntroActivity extends AppCompatActivity {
                 if (position == mList.size()-1) { // when we reach to the last screen
                     loaddLastScreen();
                 }
-
+//hi
             }
         });
 
