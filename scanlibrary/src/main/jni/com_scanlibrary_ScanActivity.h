@@ -63,6 +63,7 @@ extern "C" {
  * Signature: (IILandroid/graphics/Bitmap;FFFFFFFF)Landroid/graphics/Bitmap;
  */
 JNIEXPORT jobject JNICALL Java_com_scanlibrary_ScanActivity_getScannedBitmap
+<<<<<<< HEAD
         (JNIEnv *, jobject, jobject, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat);
 
 
@@ -77,6 +78,22 @@ JNIEXPORT jobject JNICALL Java_com_scanlibrary_ScanActivity_getMagicColorBitmap
 
 JNIEXPORT jobject JNICALL Java_com_scanlibrary_ScanActivity_getGrayBitmap
         (JNIEnv *, jobject, jobject);
+=======
+  (JNIEnv *, jobject, jobject, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat);
+
+
+JNIEXPORT jfloatArray JNICALL Java_com_scanlibrary_ScanActivity_getPoints
+(JNIEnv *, jobject, jobject);
+
+JNIEXPORT jobject JNICALL Java_com_scanlibrary_ScanActivity_getBWBitmap
+(JNIEnv *, jobject, jobject);
+
+JNIEXPORT jobject JNICALL Java_com_scanlibrary_ScanActivity_getMagicColorBitmap
+(JNIEnv *, jobject, jobject);
+
+JNIEXPORT jobject JNICALL Java_com_scanlibrary_ScanActivity_getGrayBitmap
+(JNIEnv *, jobject, jobject);
+>>>>>>> 793852e8789e749c22ae74b7441186d0041fd46e
 
 
 #ifdef __cplusplus

@@ -149,7 +149,7 @@ public class IntroActivity extends AppCompatActivity {
             }
         });
     }
-
+//hii
     private void savePrefsData() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
