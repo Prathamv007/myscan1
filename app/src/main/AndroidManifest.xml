@@ -31,9 +31,9 @@
             <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
-            <meta-data
+            <!--<meta-data
                 android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-                android:value="ocr" />
+                android:value="ocr" />-->
         </activity>
         <activity android:name=".MainActivity">
             <meta-data
