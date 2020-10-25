@@ -52,6 +52,7 @@
     <string name="key_image_quality">IMAGE_QUALITY</string>
     <string name="value_image_quality">FAST</string>
     <string name="scan_qr">scan_qr</string>
+    <string name="textview">TextView</string>
 
 
 </resources>
