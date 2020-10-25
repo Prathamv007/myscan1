@@ -8,6 +8,7 @@ buildscript {
     dependencies {
 //<<<<<<< HEAD
         classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath 'com.google.gms:google-services:+'
 //=======
         //classpath 'com.android.tools.build:gradle:4.1.0'
 //>>>>>>>// 793852e8789e749c22ae74b7441186d0041fd46e
