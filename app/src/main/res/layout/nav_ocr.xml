@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ocrText"
         app:layout_constraintVertical_bias="0.821" />
-
+//hi
     <ImageView
         android:id="@+id/Img_view"
         android:layout_width="219dp"
