@@ -7,6 +7,15 @@
         android:icon="@drawable/ic_qr_code"
         android:iconTint="@android:color/white"
         android:title="@string/scan_qr"
+        android:onClick="qrScan"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/Ocr"
+        android:icon="@drawable/ic_text"
+
+        android:iconTint="@color/white"
+        android:onClick="Ocr"
+        android:title="OCR"
         app:showAsAction="always" />
 
 

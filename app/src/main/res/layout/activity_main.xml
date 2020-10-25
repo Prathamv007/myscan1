@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <!--status bar-->
+
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/default_activity_button"
         android:layout_width="match_parent"
@@ -17,11 +17,11 @@
         android:backgroundTint="@color/buttoncolor"
         app:menu="@menu/default_menu" />
 
-    <!--add button-->
+    <!--status bar-->
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_gravity="bottom"
         android:backgroundTint="@color/buttoncolor"
         app:fabAlignmentMode="end"
@@ -29,7 +29,7 @@
         app:fabCradleRoundedCornerRadius="15sp"
         app:menu="@menu/app_bar_menu" />
 
-
+    <!--add button-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

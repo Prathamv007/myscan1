@@ -1,23 +1,20 @@
 package com.example.scan;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityOptions;
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
-import android.os.Build;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.os.Bundle;
-import android.widget.LinearLayout;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,19 +25,16 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.scan.persistance.DocumentViewModel;
+import com.example.scan.fileView.FLAdapter;
 import com.example.scan.persistance.Document;
+import com.example.scan.persistance.DocumentViewModel;
 import com.example.scan.utils.DialogUtil;
 import com.example.scan.utils.DialogUtilCallback;
-import com.example.scan.fileView.FLAdapter;
 import com.example.scan.utils.FileIOUtils;
 import com.example.scan.utils.FileWritingCallback;
-
 import com.example.scan.utils.PDFWriterUtil;
 import com.example.scan.utils.PermissionUtil;
 import com.example.scan.utils.UIUtil;
-
-
 import com.scanlibrary.ScanActivity;
 import com.scanlibrary.ScanConstants;
 
@@ -116,23 +110,33 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(dividerItemDecoration);
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.default_menu, menu);
         return true;
     }
 
-    public void goToSearch(MenuItem mi){
+    public void qrScan(MenuItem mi) {
+        Toast.makeText(getApplicationContext(), "Working", Toast.LENGTH_SHORT).show();
+    }
+
+    public void Ocr(MenuItem mi) {
+        //Toast.makeText(getApplicationContext(),"Working", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, Nav_ocr.class);
+        startActivityForResult(intent, 0);
+    }
+
+    public void goToSearch(MenuItem mi) {
         Intent intent = new Intent(this, SearchableActivity.class);
         startActivityForResult(intent, 0);
     }
 
 
-    public void goToPreferences(MenuItem mi){
+    public void goToPreferences(MenuItem mi) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivityForResult(intent, 0);
     }
-
     public void openCamera(View v){
         scannedBitmaps.clear();
 
@@ -319,6 +323,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
