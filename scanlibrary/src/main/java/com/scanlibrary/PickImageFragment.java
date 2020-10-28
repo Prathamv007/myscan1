@@ -9,8 +9,10 @@ import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraMetadata;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -182,32 +184,42 @@ public class PickImageFragment extends Fragment {
     }
 
     private Bitmap getBitmap(Uri selectedimg) throws IOException {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 3;
+        AssetFileDescriptor fileDescriptor = null;
+        fileDescriptor =
+                getActivity().getContentResolver().openAssetFileDescriptor(selectedimg, "r");
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext() );
-        String imageQuality = sharedPref.getString("IMAGE_QUALITY", "FAST"); // "FAST", "HIGH", "HIGHEST"
+        Matrix matrix = new Matrix();
 
-        if( "HIGHEST".equals(imageQuality) ){
-            return BitmapFactory.decodeFile(selectedimg.getPath());
-
-        } else if( "BETTER".equals(imageQuality) ){
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inSampleSize = 2;
-
-            ContentResolver resolver = getActivity().getContentResolver();
-            AssetFileDescriptor fileDescriptor = resolver.openAssetFileDescriptor(selectedimg, "r");
-            return BitmapFactory.decodeFileDescriptor(
-                    fileDescriptor.getFileDescriptor(), null, options
-            );
-
-        } else {
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inSampleSize = 3;
-
-            ContentResolver resolver = getActivity().getContentResolver();
-            AssetFileDescriptor fileDescriptor = resolver.openAssetFileDescriptor(selectedimg, "r");
-            return BitmapFactory.decodeFileDescriptor(
-                    fileDescriptor.getFileDescriptor(), null, options
-            );
+        ExifInterface exif = null;     //Since API Level 5
+        try {
+            exif = new ExifInterface(selectedimg.getPath());
+            int rotation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            int rotationInDegrees = exifToDegrees(rotation);
+            if (rotation != 0f) {
+                matrix.preRotate(rotationInDegrees);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        Bitmap original
+                = BitmapFactory.decodeFileDescriptor(
+                fileDescriptor.getFileDescriptor(), null, options);
+
+        return Bitmap.createBitmap(original, 0, 0, original.getWidth(), original.getHeight(), matrix, true);
+    }
+
+    private static int exifToDegrees(int exifOrientation) {
+        if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_90) {
+            return 90;
+        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_180) {
+            return 180;
+        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_270) {
+            return 270;
+        }
+        return 0;
     }
 }
+
