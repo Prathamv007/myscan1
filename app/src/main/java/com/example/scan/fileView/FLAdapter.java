@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -185,17 +186,26 @@ public class FLAdapter extends RecyclerView.Adapter<FLViewHolder> {
         intent.setType("application.pdf");
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         context.startActivity(intent);*/
+        File iconsStoragePath = Environment.getExternalStorageDirectory();
+        final String selpath = iconsStoragePath.getAbsolutePath() + "/PDF Scanner/data/";
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        Uri selectedUri = Uri.parse(selpath + "/" + file.getName());
+        String fileExtension = MimeTypeMap.getFileExtensionFromUrl(selectedUri.toString());
+        String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension);
+        intent.setType(mimeType);
+        intent.putExtra(Intent.EXTRA_STREAM, selectedUri);
+        context.startActivity(Intent.createChooser(intent, "Share File"));
 
 
 //android.os.FileUriExposedException: file:///storage/emulated/0/PDF Scanner/data/SCANNED_01-11-2020_01-33-00.pdf exposed beyond app through ClipData.Item.getUri()
-        Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+       /* Intent intentShareFile = new Intent(Intent.ACTION_SEND);
         intentShareFile.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
         intentShareFile.setType(URLConnection.guessContentTypeFromName(file.getName()));
         intentShareFile.putExtra(Intent.EXTRA_STREAM,
                 Uri.parse("file://" + file.getAbsolutePath()));
 
-        context.startActivity(intentShareFile);
+        context.startActivity(intentShareFile);*/
     }
 
    /* public void tempMethod(){
