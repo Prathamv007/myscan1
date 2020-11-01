@@ -178,22 +178,24 @@ public class FLAdapter extends RecyclerView.Adapter<FLViewHolder> {
     }
 
     public void shareFile(File file) {
-        //--did this bcoz of usinf file provider butr got error exposed beyond app through ClipData.Item.getUri
-      /*  Uri contentUri = FileProvider.getUriForFile(context.getApplicationContext(), AUTHORITY, file);
+        //--did this bcoz of usinG file provider but got error java.lang.IllegalArgumentException: Missing android.support.FILE_PROVIDER_PATHS meta-data
+       /* Uri contentUri = FileProvider.getUriForFile(context.getApplicationContext(), AUTHORITY, file);
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.putExtra(Intent.EXTRA_STREAM, contentUri);
         intent.setType("application.pdf");
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         context.startActivity(intent);*/
+
+
 //android.os.FileUriExposedException: file:///storage/emulated/0/PDF Scanner/data/SCANNED_01-11-2020_01-33-00.pdf exposed beyond app through ClipData.Item.getUri()
-       /* Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+        Intent intentShareFile = new Intent(Intent.ACTION_SEND);
         intentShareFile.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
         intentShareFile.setType(URLConnection.guessContentTypeFromName(file.getName()));
         intentShareFile.putExtra(Intent.EXTRA_STREAM,
                 Uri.parse("file://" + file.getAbsolutePath()));
 
-        context.startActivity(intentShareFile);*/
+        context.startActivity(intentShareFile);
     }
 
    /* public void tempMethod(){
