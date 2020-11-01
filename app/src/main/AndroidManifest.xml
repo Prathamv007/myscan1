@@ -14,7 +14,8 @@
         android:roundIcon="@drawable/show_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Nav_ocr"></activity>
+        <activity android:name=".PdfActivity"></activity>
+        <activity android:name=".Nav_ocr" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
@@ -32,9 +33,11 @@
             <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
-            <!--<meta-data
+            <!--
+                <meta-data
                 android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-                android:value="ocr" />-->
+                android:value="ocr" />
+            -->
         </activity>
         <activity android:name=".MainActivity">
             <meta-data
@@ -59,11 +62,24 @@
             android:name=".OCRActivity"
             android:parentActivityName=".MainActivity" />
         -->
+        <!--<provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>-->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.scan.provider"
             android:exported="false"
-            android:grantUriPermissions="true" />
+            android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/provider_paths"/>
+        </provider>
     </application>
 
 </manifest>

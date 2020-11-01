@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Environment;
 import androidx.appcompat.view.ActionMode;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.example.scan.R;
 import com.example.scan.persistance.Document;
 
 import java.io.File;
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,8 +35,9 @@ public class FLViewHolder extends RecyclerView.ViewHolder {
     private ActionMode.Callback actionModeCallbacks;
     private FLAdapter adapter;
     private Document documnt;
+    private Button btShare;
 
-    private Map<String, Integer> categoryImageMap = new HashMap<>();
+   // private Map<String, Integer> categoryImageMap = new HashMap<>();
 
     public FLViewHolder(View itemView, ActionMode.Callback actionModeCallbacks, FLAdapter adapter ) {
         super(itemView);
@@ -44,10 +47,11 @@ public class FLViewHolder extends RecyclerView.ViewHolder {
         //   this.textViewCategory = itemView.findViewById(R.id.categoryLabel);
         this.textPageCount = itemView.findViewById(R.id.pageCount);
         this.itemLayout = itemView.findViewById(R.id.relativeLayout);
+        btShare = itemView.findViewById(R.id.sharefile);
         this.adapter = adapter;
         this.actionModeCallbacks  = actionModeCallbacks;
 
-        categoryImageMap.put( "Others", R.drawable.ic_category_others );
+       /* categoryImageMap.put( "Others", R.drawable.ic_category_others );
         categoryImageMap.put( "Shopping", R.drawable.ic_category_shopping );
         categoryImageMap.put( "Vehicle", R.drawable.ic_category_vehicle );
         categoryImageMap.put( "Medical", R.drawable.ic_category_medical );
@@ -60,7 +64,7 @@ public class FLViewHolder extends RecyclerView.ViewHolder {
         categoryImageMap.put( "Manuals", R.drawable.ic_category_manuals );
         categoryImageMap.put( "Travel", R.drawable.ic_category_travel );
         categoryImageMap.put( "Notes", R.drawable.ic_category_notes );
-        categoryImageMap.put( "ID", R.drawable.ic_category_id );
+        categoryImageMap.put( "ID", R.drawable.ic_category_id );*/
     }
 
     void selectItem(Document item) {
@@ -76,20 +80,20 @@ public class FLViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    public void setDocument(final Document document ){
+    public void setDocument(final Document document ) {
 
         this.documnt = document;
 
-        this.textViewLabel.setText( document.getName() );
-        this.textViewTime.setText( document.getScanned() );
+        this.textViewLabel.setText(document.getName());
+        this.textViewTime.setText(document.getScanned());
         // this.textViewCategory.setText( document.getCategory() );
 
-        if( document.getPageCount() > 1 ) {
-            this.textPageCount.setVisibility( View.VISIBLE );
-            this.textPageCount.setText( String.valueOf(document.getPageCount()) + " Pages" );
+        if (document.getPageCount() > 1) {
+            this.textPageCount.setVisibility(View.VISIBLE);
+            this.textPageCount.setText(String.valueOf(document.getPageCount()) + " Pages");
 
         } else {
-            this.textPageCount.setVisibility( View.GONE );
+            this.textPageCount.setVisibility(View.GONE);
 
         }
 
@@ -101,24 +105,24 @@ public class FLViewHolder extends RecyclerView.ViewHolder {
 
         }
 
-        Integer resourceId = categoryImageMap.get( document.getCategory() );
-        if( resourceId == null ){
+        /*Integer resourceId = categoryImageMap.get(document.getCategory());
+        if (resourceId == null) {
             this.categoryIcon.setImageResource(R.drawable.side_icon);
 
         } else {
 
             this.categoryIcon.setImageResource(resourceId);
-        }
+        }*/
 
         this.itemLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if( adapter.multiSelect ){
+                if (adapter.multiSelect) {
 
                     selectItem(document);
 
-                    if( adapter.selectedItems.size() == 0 ){
+                    if (adapter.selectedItems.size() == 0) {
                         adapter.mActionMode.finish();
 
                     } else {
@@ -132,10 +136,10 @@ public class FLViewHolder extends RecyclerView.ViewHolder {
                     final File sd = Environment.getExternalStorageDirectory();
                     String baseDirectory = v.getContext().getString(R.string.base_storage_path);
                     String newFileName = baseDirectory + document.getPath();
-                    File toOpen = new File( sd, newFileName );
+                    File toOpen = new File(sd, newFileName);
 
                     Uri sharedFileUri = FileProvider.getUriForFile(v.getContext(), "com.example.scan.provider", toOpen);
-                    intent.setDataAndType( sharedFileUri, "application/pdf");
+                    intent.setDataAndType(sharedFileUri, "application/pdf");
                     PackageManager pm = v.getContext().getPackageManager();
                     if (intent.resolveActivity(pm) != null) {
                         v.getContext().startActivity(intent);
@@ -148,9 +152,23 @@ public class FLViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                adapter.mActionMode = ((AppCompatActivity)view.getContext()).startSupportActionMode(actionModeCallbacks);
+                adapter.mActionMode = ((AppCompatActivity) view.getContext()).startSupportActionMode(actionModeCallbacks);
                 selectItem(document);
                 return true;
+            }
+        });
+
+        btShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                 File sd = Environment.getExternalStorageDirectory();
+                String baseDirectory = view.getContext().getString(R.string.base_storage_path);
+                String newFileName = baseDirectory + document.getPath();
+                File file= new File(sd, newFileName);
+                //TODO: Jab file ka naam mil jaaye to niche waali line me se // ye hata diyo aur File ko shareFile wale method me pass kr diyo aur tempMethod bhi hata diyo
+                adapter.shareFile(file);
+              //  adapter.tempMethod();
             }
         });
     }

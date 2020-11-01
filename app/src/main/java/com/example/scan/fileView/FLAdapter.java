@@ -2,6 +2,7 @@ package com.example.scan.fileView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import androidx.appcompat.view.ActionMode;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -24,10 +26,13 @@ import com.example.scan.utils.DialogUtil;
 import com.example.scan.utils.DialogUtilCallback;
 
 import java.io.File;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static android.provider.MediaStore.AUTHORITY;
 
 public class FLAdapter extends RecyclerView.Adapter<FLViewHolder> {
 
@@ -114,20 +119,15 @@ public class FLAdapter extends RecyclerView.Adapter<FLViewHolder> {
 
 
               /*  case R.id.menu_ocr:
-
                     final Document docToOcr = selectedItems.get(0);
-
                     final String baseDirectory =  context.getString(R.string.base_storage_path);
                     final File sd = Environment.getExternalStorageDirectory();
-
                     File toOcr = new File( sd, baseDirectory + docToOcr.getPath() );
-
                     Intent intent = new Intent( context, OCRActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString( OCRActivity.FILE_PATH, docToOcr.getPath()); //Your id
                     intent.putExtras(bundle); //Put your id to your next Intent
                     context.startActivity(intent);
-
                     mode.finish();
                     return true;*/
 
@@ -169,12 +169,35 @@ public class FLAdapter extends RecyclerView.Adapter<FLViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FLViewHolder viewHolder, int i) {
-            viewHolder.setDocument( this.documentList.get(i) );
+        viewHolder.setDocument( this.documentList.get(i) );
     }
 
     @Override
     public int getItemCount() {
         return this.documentList.size();
     }
+
+    public void shareFile(File file) {
+        //--did this bcoz of usinf file provider butr got error exposed beyond app through ClipData.Item.getUri
+      /*  Uri contentUri = FileProvider.getUriForFile(context.getApplicationContext(), AUTHORITY, file);
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_STREAM, contentUri);
+        intent.setType("application.pdf");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        context.startActivity(intent);*/
+//android.os.FileUriExposedException: file:///storage/emulated/0/PDF Scanner/data/SCANNED_01-11-2020_01-33-00.pdf exposed beyond app through ClipData.Item.getUri()
+       /* Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+        intentShareFile.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        intentShareFile.setType(URLConnection.guessContentTypeFromName(file.getName()));
+        intentShareFile.putExtra(Intent.EXTRA_STREAM,
+                Uri.parse("file://" + file.getAbsolutePath()));
+
+        context.startActivity(intentShareFile);*/
+    }
+
+   /* public void tempMethod(){
+        Toast.makeText(context, "Share Method", Toast.LENGTH_SHORT).show();
+    }*/
 
 }

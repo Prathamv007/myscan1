@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ import com.scanlibrary.ScanConstants;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -83,24 +85,24 @@ public class MainActivity extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this).get(DocumentViewModel.class);
 
-        fileAdapter = new FLAdapter( viewModel, this);
+        fileAdapter = new FLAdapter(viewModel, this);
         recyclerView.setAdapter( fileAdapter );
 
         liveData = viewModel.getAllDocuments();
         liveData.observe(this, new Observer<List<Document>>() {
-                    @Override
-                    public void onChanged(@Nullable List<Document> documents) {
+            @Override
+            public void onChanged(@Nullable List<Document> documents) {
 
-                        if( documents.size() > 0 ){
-                            emptyLayout.setVisibility(View.GONE);
+                if( documents.size() > 0 ){
+                    emptyLayout.setVisibility(View.GONE);
 
-                        } else {
-                            emptyLayout.setVisibility(View.VISIBLE);
-                        }
+                } else {
+                    emptyLayout.setVisibility(View.VISIBLE);
+                }
 
-                        fileAdapter.setData(documents);
-                    }
-                });
+                fileAdapter.setData(documents);
+            }
+        });
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -126,6 +128,18 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Nav_ocr.class);
         startActivityForResult(intent, 0);
     }
+
+  /*  public void shareFile(File file) {
+
+        Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+
+        intentShareFile.setType(URLConnection.guessContentTypeFromName(file.getName()));
+        intentShareFile.putExtra(Intent.EXTRA_STREAM,
+                Uri.parse("file://" + file.getAbsolutePath()));
+
+        startActivity(Intent.createChooser(intentShareFile, "Share File"));
+    }*/
+
 
     public void goToSearch(MenuItem mi) {
         Intent intent = new Intent(this, SearchableActivity.class);
@@ -169,94 +183,94 @@ public class MainActivity extends AppCompatActivity {
     private void saveBitmap( final Bitmap bitmap, final boolean addMore ){
 
         final String baseDirectory =  getApplicationContext().getString( addMore ? R.string.base_staging_path : R.string.base_storage_path);
-            final File sd = Environment.getExternalStorageDirectory();
+        final File sd = Environment.getExternalStorageDirectory();
 
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy_hh-mm-ss");
-            final String timestamp = simpleDateFormat.format( new Date() );
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy_hh-mm-ss");
+        final String timestamp = simpleDateFormat.format( new Date() );
 
-            if( addMore ){
+        if( addMore ){
 
-                try {
+            try {
 
-                    String filename = "SCANNED_STG_" + timestamp + ".png";
+                String filename = "SCANNED_STG_" + timestamp + ".png";
 
-                    FileIOUtils.writeFile(baseDirectory, filename, new FileWritingCallback() {
-                        @Override
-                        public void write(FileOutputStream out) {
-                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-                        }
-                    });
-
-                    bitmap.recycle();
-                    System.gc();
-
-                }catch(IOException ioe){
-                    ioe.printStackTrace();
-                }
-
-            } else {
-
-                DialogUtil.askUserFilaname( c, null, null, new DialogUtilCallback() {
-
+                FileIOUtils.writeFile(baseDirectory, filename, new FileWritingCallback() {
                     @Override
-                    public void onSave(String textValue, String category) {
-
-                        try {
-
-                            final PDFWriterUtil pdfWriter = new PDFWriterUtil();
-
-                            String stagingDirPath = getApplicationContext().getString( R.string.base_staging_path );
-
-                            List<File> stagingFiles = FileIOUtils.getAllFiles( stagingDirPath );
-                            for ( File stagedFile : stagingFiles ) {
-                                pdfWriter.addFile( stagedFile );
-                            }
-
-                            pdfWriter.addBitmap(bitmap);
-
-                            String filename = "SCANNED_" + timestamp + ".pdf";
-                            FileIOUtils.writeFile( baseDirectory, filename, new FileWritingCallback() {
-                                @Override
-                                public void write(FileOutputStream out) {
-                                    try {
-                                        pdfWriter.write(out);
-
-                                    }catch (IOException e){
-                                        e.printStackTrace();
-                                    }
-                                }
-                            });
-
-
-                            fileAdapter.notifyDataSetChanged();
-
-                            FileIOUtils.clearDirectory( stagingDirPath );
-
-                            SimpleDateFormat simpleDateFormatView = new SimpleDateFormat("dd-MM-yyyy hh:mm");
-                            final String timestampView = simpleDateFormatView.format(new Date());
-
-                            Document newDocument = new Document();
-                            newDocument.setName( textValue );
-                            newDocument.setCategory( category );
-                            newDocument.setPath( filename );
-                            newDocument.setScanned( timestampView );
-                            newDocument.setPageCount( pdfWriter.getPageCount() );
-                            viewModel.saveDocument(newDocument);
-
-                            pdfWriter.close();
-
-                            bitmap.recycle();
-                            System.gc();
-
-                        }catch(IOException ioe){
-                            ioe.printStackTrace();
-
-                        }
-
+                    public void write(FileOutputStream out) {
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
                     }
                 });
 
+                bitmap.recycle();
+                System.gc();
+
+            }catch(IOException ioe){
+                ioe.printStackTrace();
             }
+
+        } else {
+
+            DialogUtil.askUserFilaname( c, null, null, new DialogUtilCallback() {
+
+                @Override
+                public void onSave(String textValue, String category) {
+
+                    try {
+
+                        final PDFWriterUtil pdfWriter = new PDFWriterUtil();
+
+                        String stagingDirPath = getApplicationContext().getString( R.string.base_staging_path );
+
+                        List<File> stagingFiles = FileIOUtils.getAllFiles( stagingDirPath );
+                        for ( File stagedFile : stagingFiles ) {
+                            pdfWriter.addFile( stagedFile );
+                        }
+
+                        pdfWriter.addBitmap(bitmap);
+
+                        String filename = "SCANNED_" + timestamp + ".pdf";
+                        FileIOUtils.writeFile( baseDirectory, filename, new FileWritingCallback() {
+                            @Override
+                            public void write(FileOutputStream out) {
+                                try {
+                                    pdfWriter.write(out);
+
+                                }catch (IOException e){
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+
+
+                        fileAdapter.notifyDataSetChanged();
+
+                        FileIOUtils.clearDirectory( stagingDirPath );
+
+                        SimpleDateFormat simpleDateFormatView = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+                        final String timestampView = simpleDateFormatView.format(new Date());
+
+                        Document newDocument = new Document();
+                        newDocument.setName( textValue );
+                        newDocument.setCategory( category );
+                        newDocument.setPath( filename );
+                        newDocument.setScanned( timestampView );
+                        newDocument.setPageCount( pdfWriter.getPageCount() );
+                        viewModel.saveDocument(newDocument);
+
+                        pdfWriter.close();
+
+                        bitmap.recycle();
+                        System.gc();
+
+                    }catch(IOException ioe){
+                        ioe.printStackTrace();
+
+                    }
+
+                }
+            });
+
+        }
     }
 
     private void savePdf() {
