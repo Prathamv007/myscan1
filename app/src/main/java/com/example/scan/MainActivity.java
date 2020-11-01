@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ import com.scanlibrary.ScanConstants;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -83,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this).get(DocumentViewModel.class);
 
-        fileAdapter = new FLAdapter( viewModel, this);
+        fileAdapter = new FLAdapter(viewModel, this);
         recyclerView.setAdapter( fileAdapter );
 
         liveData = viewModel.getAllDocuments();
@@ -127,7 +129,18 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, 0);
     }
 
-    public void goToSearch(MenuItem mi) {
+    public void shareFile(File file) {
+
+        Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+
+        intentShareFile.setType(URLConnection.guessContentTypeFromName(file.getName()));
+        intentShareFile.putExtra(Intent.EXTRA_STREAM,
+                Uri.parse("file://" + file.getAbsolutePath()));
+
+        startActivity(Intent.createChooser(intentShareFile, "Share File"));
+    }
+
+        public void goToSearch(MenuItem mi) {
         Intent intent = new Intent(this, SearchableActivity.class);
         startActivityForResult(intent, 0);
     }

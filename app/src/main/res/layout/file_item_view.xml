@@ -59,7 +59,6 @@
                 android:text="01-04-2019 22:10"
                 android:textSize="15sp" />
 
-
             <TextView
                 android:id="@+id/pageCount"
                 android:layout_width="wrap_content"
@@ -82,7 +81,6 @@
         android:id="@+id/sharefile"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:drawableRight="@drawable/ic_menu_share"
-        android:onClick="Clickedit" />
+        android:drawableRight="@drawable/ic_menu_share" />
 
 </LinearLayout>

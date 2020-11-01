@@ -2,6 +2,7 @@ package com.example.scan.fileView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import androidx.appcompat.view.ActionMode;
@@ -24,6 +25,7 @@ import com.example.scan.utils.DialogUtil;
 import com.example.scan.utils.DialogUtilCallback;
 
 import java.io.File;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -175,6 +177,21 @@ public class FLAdapter extends RecyclerView.Adapter<FLViewHolder> {
     @Override
     public int getItemCount() {
         return this.documentList.size();
+    }
+
+    public void shareFile(File file) {
+
+        Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+
+        intentShareFile.setType(URLConnection.guessContentTypeFromName(file.getName()));
+        intentShareFile.putExtra(Intent.EXTRA_STREAM,
+                Uri.parse("file://" + file.getAbsolutePath()));
+
+        context.startActivity(Intent.createChooser(intentShareFile, "Share File"));
+    }
+
+    public void tempMethod(){
+        Toast.makeText(context, "Share Method", Toast.LENGTH_SHORT).show();
     }
 
 }
