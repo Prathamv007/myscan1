@@ -47,7 +47,7 @@ public class IntroActivity extends AppCompatActivity {
         UIUtil.setWhiteNavigationBar( findViewById(android.R.id.content), this );
 
         setContentView(R.layout.activity_intro);
-
+//hi
         // hide the action bar
         getSupportActionBar().hide();
 
