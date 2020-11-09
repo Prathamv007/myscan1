@@ -6,6 +6,6 @@
         android:icon="@drawable/ic_menu_delete"
         android:iconTint="@android:color/white"
         android:title="@string/menu_delete"
-        app:showAsAction="always"/>
+        android:showAsAction="always" />
 
 </menu>

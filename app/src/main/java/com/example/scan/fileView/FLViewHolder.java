@@ -1,5 +1,7 @@
 package com.example.scan.fileView;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -11,6 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.scan.PdfActivity;
+import  com.example.scan.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
@@ -18,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.scan.R;
 import com.example.scan.persistance.Document;
+import com.github.barteksc.pdfviewer.PDFView;
 
 import java.io.File;
 import java.net.URLConnection;
@@ -36,8 +43,10 @@ public class FLViewHolder extends RecyclerView.ViewHolder {
     private FLAdapter adapter;
     private Document documnt;
     private Button btShare;
-
-   // private Map<String, Integer> categoryImageMap = new HashMap<>();
+    //Activity context;
+    Activity activity;
+    private Context mContext;
+    // private Map<String, Integer> categoryImageMap = new HashMap<>();
 
     public FLViewHolder(View itemView, ActionMode.Callback actionModeCallbacks, FLAdapter adapter ) {
         super(itemView);
@@ -108,9 +117,7 @@ public class FLViewHolder extends RecyclerView.ViewHolder {
         /*Integer resourceId = categoryImageMap.get(document.getCategory());
         if (resourceId == null) {
             this.categoryIcon.setImageResource(R.drawable.side_icon);
-
         } else {
-
             this.categoryIcon.setImageResource(resourceId);
         }*/
 
@@ -130,7 +137,12 @@ public class FLViewHolder extends RecyclerView.ViewHolder {
                     }
 
                 } else {
+                    Toast.makeText(v.getContext(), "onClick working", Toast.LENGTH_LONG).show();
+                  // PDFView pdfView =null;
+                       //     pdfView.findViewById(R.id.pdfView);
+
                     Intent intent = new Intent(Intent.ACTION_VIEW);
+                   // Intent intent = new Intent(v.getContext(), PdfActivity.class);
                     intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
                     final File sd = Environment.getExternalStorageDirectory();
@@ -138,15 +150,19 @@ public class FLViewHolder extends RecyclerView.ViewHolder {
                     String newFileName = baseDirectory + document.getPath();
                     File toOpen = new File(sd, newFileName);
 
+                   // pdfView.fromFile(toOpen);
+
                     Uri sharedFileUri = FileProvider.getUriForFile(v.getContext(), "com.example.scan.provider", toOpen);
                     intent.setDataAndType(sharedFileUri, "application/pdf");
                     PackageManager pm = v.getContext().getPackageManager();
                     if (intent.resolveActivity(pm) != null) {
-                        v.getContext().startActivity(intent);
+
+                       v.getContext().startActivity(intent);
+//adapter.getRecipeFile(toOpen);
                     }
                 }
 
-            }
+          }
         });
 
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -162,13 +178,14 @@ public class FLViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
 
-                 File sd = Environment.getExternalStorageDirectory();
+                File sd = Environment.getExternalStorageDirectory();
                 String baseDirectory = view.getContext().getString(R.string.base_storage_path);
                 String newFileName = baseDirectory + document.getPath();
                 File file= new File(sd, newFileName);
                 //TODO: Jab file ka naam mil jaaye to niche waali line me se // ye hata diyo aur File ko shareFile wale method me pass kr diyo aur tempMethod bhi hata diyo
                 adapter.shareFile(file);
-              //  adapter.tempMethod();
+
+                //  adapter.tempMethod();
             }
         });
     }

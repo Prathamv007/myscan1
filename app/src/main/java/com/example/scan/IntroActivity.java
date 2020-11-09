@@ -98,6 +98,8 @@ public class IntroActivity extends AppCompatActivity {
             }
         });
 
+
+
         // tablayout add change listener
         tabIndicator.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override

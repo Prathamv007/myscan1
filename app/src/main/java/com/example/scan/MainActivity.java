@@ -17,8 +17,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -36,6 +39,7 @@ import com.example.scan.utils.FileWritingCallback;
 import com.example.scan.utils.PDFWriterUtil;
 import com.example.scan.utils.PermissionUtil;
 import com.example.scan.utils.UIUtil;
+import com.google.android.material.navigation.NavigationView;
 import com.scanlibrary.ScanActivity;
 import com.scanlibrary.ScanConstants;
 
@@ -46,9 +50,12 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-
+    private DrawerLayout dl;
+    private ActionBarDrawerToggle t;
+    private NavigationView nv;
     private FLAdapter fileAdapter;
     private final Context c = this;
     private List<Uri> scannedBitmaps = new ArrayList<>();
@@ -59,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private String searchText = "";
     LiveData<List<Document>> liveData;
 
+
     public MainActivity() {
     }
 
@@ -66,6 +74,37 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+       dl = (DrawerLayout)findViewById(R.id.dl);
+        t = new ActionBarDrawerToggle(this, dl,R.string.open, R.string.close);
+t.setDrawerIndicatorEnabled(true);
+       dl.addDrawerListener(t);
+        t.syncState();
+        NavigationView nav_view=(NavigationView)findViewById(R.id.nav_view);
+        nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                switch(id)
+                {
+                    case R.id.account:
+                        Toast.makeText(MainActivity.this, "My Account",Toast.LENGTH_SHORT).show();break;
+                    case R.id.settings:
+                        Toast.makeText(MainActivity.this, "Settings",Toast.LENGTH_SHORT).show();break;
+                    case R.id.mycart:
+                        Toast.makeText(MainActivity.this, "My Cart",Toast.LENGTH_SHORT).show();break;
+                    default:
+                        return true;
+                }
+
+
+                return true;
+
+            }
+        });
+
+// getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         RecyclerView recyclerView = findViewById(R.id.rw);
 
@@ -114,6 +153,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return t.onOptionsItemSelected(item)||super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.default_menu, menu);
         return true;
@@ -124,19 +168,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Ocr(MenuItem mi) {
-        //Toast.makeText(getApplicationContext(),"Working", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Working", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, Nav_ocr.class);
         startActivityForResult(intent, 0);
     }
 
   /*  public void shareFile(File file) {
-
         Intent intentShareFile = new Intent(Intent.ACTION_SEND);
-
         intentShareFile.setType(URLConnection.guessContentTypeFromName(file.getName()));
         intentShareFile.putExtra(Intent.EXTRA_STREAM,
                 Uri.parse("file://" + file.getAbsolutePath()));
-
         startActivity(Intent.createChooser(intentShareFile, "Share File"));
     }*/
 
@@ -297,7 +338,7 @@ public class MainActivity extends AppCompatActivity {
                         pdfWriter.addFile(stagedFile);
                     }
 
-                    String filename = "SCANNED_" + timestamp + ".pdf";
+                    String filename = "mScan_" + timestamp + ".pdf";
                     FileIOUtils.writeFile(baseDirectory, filename, new FileWritingCallback() {
                         @Override
                         public void write(FileOutputStream out) {

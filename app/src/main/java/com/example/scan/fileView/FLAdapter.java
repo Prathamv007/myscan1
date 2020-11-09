@@ -3,7 +3,6 @@ package com.example.scan.fileView;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Environment;
 import androidx.appcompat.view.ActionMode;
 import android.view.LayoutInflater;
@@ -15,25 +14,21 @@ import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
+import com.example.scan.BuildConfig;
+import  com.example.scan.R;
 import androidx.annotation.NonNull;
-import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.scan.R;
 import com.example.scan.persistance.Document;
 import com.example.scan.persistance.DocumentViewModel;
 import com.example.scan.utils.DialogUtil;
 import com.example.scan.utils.DialogUtilCallback;
+import com.github.barteksc.pdfviewer.PDFView;
 
 import java.io.File;
-import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import static android.provider.MediaStore.AUTHORITY;
 
 public class FLAdapter extends RecyclerView.Adapter<FLViewHolder> {
 
@@ -197,8 +192,9 @@ public class FLAdapter extends RecyclerView.Adapter<FLViewHolder> {
         context.startActivity(Intent.createChooser(intent, "Share File"));
 
 
+
 //android.os.FileUriExposedException: file:///storage/emulated/0/PDF Scanner/data/SCANNED_01-11-2020_01-33-00.pdf exposed beyond app through ClipData.Item.getUri()
-       /* Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+      /*  Intent intentShareFile = new Intent(Intent.ACTION_SEND);
         intentShareFile.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
         intentShareFile.setType(URLConnection.guessContentTypeFromName(file.getName()));
@@ -207,6 +203,16 @@ public class FLAdapter extends RecyclerView.Adapter<FLViewHolder> {
 
         context.startActivity(intentShareFile);*/
     }
+   /* public void getRecipeFile(File toOpen) {
+
+        PDFView pdfView = null;
+        if (BuildConfig.DEBUG) {
+            throw new AssertionError("Assertion failed");
+        }
+        pdfView.findViewById(R.id.pdfView);
+        pdfView.fromFile(toOpen).load();
+        //  return toOpen;
+    }*/
 
    /* public void tempMethod(){
         Toast.makeText(context, "Share Method", Toast.LENGTH_SHORT).show();
