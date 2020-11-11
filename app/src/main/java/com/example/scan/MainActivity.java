@@ -103,7 +103,7 @@ t.setDrawerIndicatorEnabled(true);
             }
         });
 
-// getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+ getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         RecyclerView recyclerView = findViewById(R.id.rw);

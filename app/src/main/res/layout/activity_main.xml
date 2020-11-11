@@ -7,100 +7,104 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/baseLayout"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:context=".MainActivity">
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/default_activity_button"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/baseLayout"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="top"
-
-        android:backgroundTint="@color/buttoncolor"
-        app:menu="@menu/default_menu" />
-
-    <!--status bar-->
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom"
-        android:backgroundTint="@color/buttoncolor"
-        app:fabAlignmentMode="end"
-        app:fabCradleMargin="6.2sp"
-        app:fabCradleRoundedCornerRadius="15sp"
-        app:menu="@menu/app_bar_menu" />
-
-    <!--add button-->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:backgroundTint="#ED4444"
-        android:onClick="openCamera"
-        android:src="@drawable/ic_add"
-        app:layout_anchor="@id/bottomAppBar"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
 
-        app:maxImageSize="35sp"
-        app:tint="@color/white" />
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
-    <RelativeLayout
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rw"
+        <!--<com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/default_activity_button"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/empty_list" />
-
-        <LinearLayout
-            android:id="@+id/empty_list"
-            android:visibility="gone"
+            android:layout_height="50dp"
+            android:layout_gravity="top"
+            android:backgroundTint="@color/buttoncolor"
+            app:menu="@menu/default_menu" />
+-->
+        <!--status bar
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="vertical">
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:backgroundTint="@color/buttoncolor"
+            app:fabAlignmentMode="end"
+            app:fabCradleMargin="6.2sp"
+            app:fabCradleRoundedCornerRadius="15sp"
+            app:menu="@menu/app_bar_menu" />-->
 
-            <ImageView
-                android:id="@+id/empty_list_icon"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:background="@drawable/ic_no_data" />
+        <!--add button-->
 
-            <TextView
-                android:id="@+id/empty_list_title"
+
+
+        <RelativeLayout
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rw"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="Scan the files"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:textSize="24dp"
-                android:gravity="center_horizontal"/>
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="0dp" />
 
-            <TextView
-                android:id="@+id/empty_list_message"
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="34dp"
+                android:layout_marginBottom="27dp"
+                android:backgroundTint="#ED4444"
+                android:onClick="openCamera"
+                android:src="@drawable/ic_add"
+                app:maxImageSize="38sp"
+                app:tint="@color/white" />
+
+            <LinearLayout
+                android:id="@+id/empty_list"
+                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Scan to make something great"
-                android:paddingLeft="40dp"
-                android:paddingRight="40dp"
-                android:gravity="center_horizontal" />
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/empty_list_icon"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:background="@drawable/ic_no_data" />
+
+                <TextView
+                    android:id="@+id/empty_list_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Scan the files"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="24dp"
+                    android:gravity="center_horizontal"/>
+
+                <TextView
+                    android:id="@+id/empty_list_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Scan to make something great"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp"
+                    android:gravity="center_horizontal" />
+
+            </LinearLayout>
 
 
-    </RelativeLayout>
-
- <com.google.android.material.navigation.NavigationView
+        </RelativeLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:menu="@menu/navigation_menu"
@@ -110,4 +114,5 @@
 
 
 
-    </androidx.drawerlayout.widget.DrawerLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
