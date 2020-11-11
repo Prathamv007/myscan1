@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Scanning</string>
+    <string name="app_name">mScan</string>
     <string name="base_storage_path">PDF Scanner/data/</string>
     <string name="base_staging_path">PDF Scanner/stage/</string>
     <string name="search_hint">Search Documents</string>

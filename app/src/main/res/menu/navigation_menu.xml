@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/account"
-        android:icon="@drawable/ic_baseline_image_24"
-        android:title="My Account"/>
-    <item android:id="@+id/settings"
-        android:icon="@drawable/ic_baseline_image_24"
-        android:title="Settings"/>
-    <item android:id="@+id/mycart"
-        android:icon="@drawable/ic_baseline_image_24"
-        android:title="My Cart"/>
 
+    <item
+
+        android:id="@+id/qr"
+        android:icon="@drawable/ic_qr_code"
+        android:iconTint="@android:color/white"
+        android:title="@string/scan_qr"
+        android:onClick="qrScan" />
+
+
+
+
+
+    <item
+        android:id="@+id/Ocr"
+        android:icon="@drawable/ic_text"
+
+        android:iconTint="@color/white"
+        android:onClick="Ocr"
+        android:title="OCR"/>
+
+
+
+
+
+
+    <item
+
+        android:id="@+id/show_prefrences"
+        android:iconTint="@android:color/white"
+        android:icon="@drawable/ic_settings"
+        android:onClick="goToPreferences"
+        android:title="@string/menu_settings"/>
+        //app:showAsAction="always" />
 </menu>

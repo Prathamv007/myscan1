@@ -12,7 +12,6 @@
     <item
         android:id="@+id/Ocr"
         android:icon="@drawable/ic_text"
-
         android:iconTint="@color/white"
         android:onClick="Ocr"
         android:title="OCR"
