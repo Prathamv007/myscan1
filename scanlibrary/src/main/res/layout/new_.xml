@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:animateLayoutChanges="false"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/pageNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="54dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginRight="-38dp"
+        android:layout_marginBottom="522dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="20dp"
+        android:text="1" />
+
+
+    <FrameLayout
+        android:id="@+id/img_result"
+        android:layout_width="match_parent"
+        android:layout_height="493dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/scanPadding"
+        android:layout_marginTop="@dimen/scanPadding"
+        android:layout_marginEnd="@dimen/scanPadding">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="491dp">
+
+            <ImageView
+                android:id="@+id/scannedImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="@dimen/scanPadding"
+                android:layout_marginEnd="@dimen/scanPadding"
+                android:layout_marginBottom="16dp"
+                android:paddingTop="50dp" />
+
+
+        </RelativeLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:background="#009688">
+
+        <Button
+            android:id="@+id/doneButton"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorAccent"
+            android:layout_weight="1"
+            android:text="Save" />
+
+        <Button
+            android:id="@+id/original"
+            android:layout_width="2dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorAccent"
+            android:text="Origi" />
+
+        <Button
+            android:id="@+id/magicColor"
+            android:layout_width="1dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorAccent"
+            android:text="Auto" />
+
+        <Button
+            android:id="@+id/grayMode"
+            android:layout_width="1dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorAccent"
+            android:text="Gray" />
+
+        <Button
+            android:id="@+id/BWMode"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorAccent"
+            android:text="B/W" />
+
+        <Button
+            android:id="@+id/addBtn"
+            android:layout_width="1dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorAccent"
+           android:text="next"/>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

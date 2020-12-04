@@ -1,7 +1,11 @@
 package com.example.scan;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,6 +22,7 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Nav_ocr extends AppCompatActivity {
@@ -44,6 +49,34 @@ public class Nav_ocr extends AppCompatActivity {
                 startActivityForResult(getIntent().createChooser(i, "select images"), 0);
             }
         });
+
+
+        // from GALLERY
+        Bundle bundle = getIntent().getExtras();
+        if (bundle!=null && bundle.containsKey("mFrom") && bundle.getString("mFrom","").equalsIgnoreCase("Gallery")){
+            try {
+                Uri myUri = Uri.parse(bundle.getString("GalleryData"));
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), myUri);
+                Img.setImageBitmap(bitmap);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+
+        // from CAMERA
+        if (bundle!=null && bundle.containsKey("mFrom") && bundle.getString("mFrom","").equalsIgnoreCase("Camera"))
+            setImage();
+    }
+
+    private void setImage(){
+        final String dir = android.os.Environment.getExternalStorageDirectory() + "/picFolder/";
+        String file = dir + "temp.jpg";
+        File newfile = new File(file);
+
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        Bitmap bitmap = BitmapFactory.decodeFile(newfile.getAbsolutePath(),bmOptions);
+        Img.setImageBitmap(bitmap);
     }
 
     @Override

@@ -2,7 +2,9 @@ package com.example.scan;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,16 +12,20 @@ import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.LiveData;
@@ -43,6 +49,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.scanlibrary.ScanActivity;
 import com.scanlibrary.ScanConstants;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -65,15 +72,15 @@ public class MainActivity extends AppCompatActivity {
 
     private String searchText = "";
     LiveData<List<Document>> liveData;
+    private int TAKE_PHOTO_CODE = 0;
+    private static int count = 0;
 
-
-    public MainActivity() {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
        dl = (DrawerLayout)findViewById(R.id.dl);
         t = new ActionBarDrawerToggle(this, dl,R.string.open, R.string.close);
@@ -169,18 +176,10 @@ t.setDrawerIndicatorEnabled(true);
 
     public void Ocr(MenuItem mi) {
         Toast.makeText(getApplicationContext(),"Working", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Nav_ocr.class);
-        startActivityForResult(intent, 0);
+        //Intent intent = new Intent(this, Nav_ocr.class);
+        //startActivityForResult(intent, 0);
+        dialog();
     }
-
-  /*  public void shareFile(File file) {
-        Intent intentShareFile = new Intent(Intent.ACTION_SEND);
-        intentShareFile.setType(URLConnection.guessContentTypeFromName(file.getName()));
-        intentShareFile.putExtra(Intent.EXTRA_STREAM,
-                Uri.parse("file://" + file.getAbsolutePath()));
-        startActivity(Intent.createChooser(intentShareFile, "Share File"));
-    }*/
-
 
     public void goToSearch(MenuItem mi) {
         Intent intent = new Intent(this, SearchableActivity.class);
@@ -192,6 +191,53 @@ t.setDrawerIndicatorEnabled(true);
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivityForResult(intent, 0);
     }
+
+    public void dialog()
+    {
+        final CharSequence[] options = {"Take Photo", "choose from Gallery", "Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Add Photo!");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if(options[item].equals("Take Photo"))
+                {
+                    final String dir = android.os.Environment.getExternalStorageDirectory() + "/picFolder/";
+                    File newdir = new File(dir);
+                    newdir.mkdirs();
+
+                    String file = dir + "temp.jpg";
+                    File newfile = new File(file);
+                    try {
+                        newfile.createNewFile();
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                    Uri outputFileUri = Uri.fromFile(newfile);
+
+                    Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+
+                    startActivityForResult(cameraIntent, TAKE_PHOTO_CODE);
+                }
+                else if (options[item].equals("choose from Gallery"))
+                {// from gallary
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"),3);
+
+                }
+            else if (options[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
     public void openCamera(View v){
         scannedBitmaps.clear();
 
@@ -383,6 +429,31 @@ t.setDrawerIndicatorEnabled(true);
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK) {
+            Intent intent = new Intent(this, Nav_ocr.class);
+            intent.putExtra("mFrom", "Camera");
+            startActivity(intent);
+        }
+
+        if (requestCode == 3) {
+            if (resultCode == Activity.RESULT_OK) {
+                if (data != null) {
+                    try {
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
+
+                       Intent intent = new Intent(this, Nav_ocr.class);
+                        intent.putExtra("GalleryData", data.getData().toString());
+                        intent.putExtra("mFrom", "Gallery");
+                        //intent.putExtra("GalleryData", byteArray);
+                        startActivity(intent);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
 
         if ( ( requestCode == ScanConstants.PICKFILE_REQUEST_CODE || requestCode == ScanConstants.START_CAMERA_REQUEST_CODE ) &&
                 resultCode == Activity.RESULT_OK) {
