@@ -8,4 +8,14 @@
     <color name="white">#ffffff</color>
     <color name="tab_indicator_gray">#c0c0c0</color>
     <color name="buttoncolor">#145F81</color>
+
+    <color name="colorEndGradBG">#E2BAC8</color>
+    <color name="colorStartGradBG">#D8F8DA</color>
+
+    <color name="colorEndGrad">#167A1C</color>
+    <color name="colorStartGrad">#54B159</color>
+
+    <color name="colorBackground">#F1F4F7</color>
+    <color name="gradient_start_color">#4c84ff</color>
+    <color name="gradient_end_color">#18a3fe</color>
 </resources>

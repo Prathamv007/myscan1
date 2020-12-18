@@ -11,7 +11,7 @@ import com.example.scan.persistance.DocumentDatabase;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class SplashScreen extends AppCompatActivity {
 
         DocumentDatabase.getInstance( getApplicationContext() );
 
-        /*if (restorePrefData()) {*/
+        if (restorePrefData()) {
 
             new Handler().postDelayed(new Runnable() {
 
@@ -35,25 +35,25 @@ public class SplashScreen extends AppCompatActivity {
             }, SPLASH_TIME_OUT);
 
 
-        /* }*/ /*else {
+         }else {
 
             new Handler().postDelayed(new Runnable() {
 
 
                 @Override
                 public void run() {
-                    Intent i = new Intent(SplashScreen.this, IntroActivity.class);
+                    Intent i = new Intent(SplashScreen.this, MainActivity.class);
                     startActivity(i);
                     finish();
 
                 }
             }, SPLASH_TIME_OUT);
-        }*/
+        }
     }
 
-   /* private boolean restorePrefData() {
+   private boolean restorePrefData() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
         Boolean isIntroActivityOpnendBefore = pref.getBoolean("isIntroOpnend",false);
         return  isIntroActivityOpnendBefore;
-    }*/
+    }
 }

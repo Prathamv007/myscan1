@@ -22,13 +22,13 @@
 
 
     <string name="intro_title1">Scan Documents</string>
-    <string name="intro_desc1">Easily digitize all your physical documents by converting them to PDFs</string>
+    <string name="intro_desc1">Scan images and convert them in PDFs real quick</string>
 
     <string name="intro_title2">Extract Texts</string>
-    <string name="intro_desc2">Share usable texts from documents, so that you don\'t have to type it ever again</string>
+    <string name="intro_desc2">Instant conversion to text with OCR, don\'t worry about typing</string>
 
-    <string name="intro_title3">Organize Better</string>
-    <string name="intro_desc3">Categorize easily, and manage your document clutter much better</string>
+    <string name="intro_title3">Scan Code</string>
+    <string name="intro_desc3">Scan any Barcode or Qrcode in no time</string>
 
     <string-array name="category_array">
         <item>Others</item>

@@ -1,12 +1,11 @@
-/*
 package com.example.scan.intro;
 
-public class IntroItem {
+public class ScreenItem {
 
     String Title,Description;
     int ScreenImg;
 
-    public IntroItem(String title, String description, int screenImg) {
+    public ScreenItem(String title, String description, int screenImg) {
         Title = title;
         Description = description;
         ScreenImg = screenImg;
@@ -36,4 +35,3 @@ public class IntroItem {
         return ScreenImg;
     }
 }
-*/

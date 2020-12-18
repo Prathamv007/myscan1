@@ -34,5 +34,5 @@
         android:icon="@drawable/ic_settings"
         android:onClick="goToPreferences"
         android:title="@string/menu_settings"/>
-        //app:showAsAction="always" />
+        //app:showAsAction="always"
 </menu>

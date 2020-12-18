@@ -1,3 +1,4 @@
+/*
 package com.example.scan;
 
 import android.content.Intent;
@@ -62,15 +63,15 @@ public class IntroActivity extends AppCompatActivity {
         final List<IntroItem> mList = new ArrayList<>();
         mList.add(new IntroItem( getResources().getString(R.string.intro_title1),
                                  getResources().getString(R.string.intro_desc1),
-                                 R.drawable.ic_intro1));
+                                 R.drawable.pdf));
 
         mList.add(new IntroItem( getResources().getString(R.string.intro_title2),
                                  getResources().getString(R.string.intro_desc2),
-                                 R.drawable.ic_intro2));
+                                 R.drawable.ocr));
 
         mList.add(new IntroItem( getResources().getString(R.string.intro_title3),
                                  getResources().getString(R.string.intro_desc3),
-                                 R.drawable.ic_intro3));
+                                 R.drawable.qr));
 
         // setup viewpager
         screenPager =findViewById(R.id.screen_viewpager);
@@ -174,3 +175,4 @@ public class IntroActivity extends AppCompatActivity {
 
     }
 }
+*/
