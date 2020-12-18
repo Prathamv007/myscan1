@@ -36,6 +36,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.scan.fileView.FLAdapter;
+import com.example.scan.ocr.MainActivityOcr;
 import com.example.scan.persistance.Document;
 import com.example.scan.persistance.DocumentViewModel;
 import com.example.scan.utils.DialogUtil;
@@ -176,9 +177,9 @@ t.setDrawerIndicatorEnabled(true);
 
     public void Ocr(MenuItem mi) {
         Toast.makeText(getApplicationContext(),"Working", Toast.LENGTH_SHORT).show();
-        //Intent intent = new Intent(this, Nav_ocr.class);
-        //startActivityForResult(intent, 0);
-        dialog();
+      Intent intent = new Intent(this, MainActivityOcr.class);
+    startActivity(intent);
+        //dialog();
     }
 
     public void goToSearch(MenuItem mi) {
@@ -431,7 +432,7 @@ t.setDrawerIndicatorEnabled(true);
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK) {
-            Intent intent = new Intent(this, Nav_ocr.class);
+            Intent intent = new Intent(this, MainActivityOcr.class);
             intent.putExtra("mFrom", "Camera");
             startActivity(intent);
         }
@@ -442,7 +443,7 @@ t.setDrawerIndicatorEnabled(true);
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
 
-                       Intent intent = new Intent(this, Nav_ocr.class);
+                       Intent intent = new Intent(this, MainActivityOcr.class);
                         intent.putExtra("GalleryData", data.getData().toString());
                         intent.putExtra("mFrom", "Gallery");
                         //intent.putExtra("GalleryData", byteArray);

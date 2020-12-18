@@ -39,7 +39,10 @@
                 android:name="com.google.firebase.ml.vision.DEPENDENCIES"
                 android:value="ocr" />
             -->
+
         </activity>
+        <activity android:name=".ocr.MainActivityOcr"></activity>
+
         <activity android:name=".MainActivity">
             <meta-data
                 android:name="com.google.android.gms.vision.DEPENDENCIES"
