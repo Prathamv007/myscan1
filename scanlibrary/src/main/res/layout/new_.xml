@@ -67,7 +67,8 @@
             android:background="@android:color/transparent"
             android:textColor="@color/colorAccent"
             android:layout_weight="1"
-            android:text="Save" />
+            android:text="Save"
+            android:src="@drawable/ic_save"/>
 
         <Button
             android:id="@+id/original"
