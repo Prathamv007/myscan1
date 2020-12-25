@@ -12,13 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.scan.MainActivity;
 import com.example.scan.ocr.MainActivityOcr;
 import com.example.scan.ocr.Permission;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -38,6 +41,7 @@ public class MainLayout extends Fragment {
     private ImageView imageView;
     private TextView label;
     private Button btnTakeSnap, btnSelectImage;
+    private ImageButton backBtn;
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int READ_REQUEST_CODE = 42;
@@ -62,6 +66,18 @@ public class MainLayout extends Fragment {
         imageView = view.findViewById(R.id.iv_image_holder);
         label = view.findViewById(R.id.tv_label);
 
+        backBtn = view.findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+
         btnTakeSnap = view.findViewById(R.id.btn_take_snap);
         btnTakeSnap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +85,8 @@ public class MainLayout extends Fragment {
                 takeSnapShot();
             }
         });
+
+
 
         btnSelectImage = view.findViewById(R.id.btn_select_image);
         btnSelectImage.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +103,11 @@ public class MainLayout extends Fragment {
 
         return view;
     }
+
+    /*@Override
+    public void onDetach() {
+        super.onDetach();
+    }*/
 
     /**
      * Method to take capture image from other camera app.
@@ -208,4 +231,6 @@ public class MainLayout extends Fragment {
             }
         }
     }
+
+
 }

@@ -53,7 +53,7 @@ public class SplashScreen extends AppCompatActivity {
 
    private boolean restorePrefData() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
-        Boolean isIntroActivityOpnendBefore = pref.getBoolean("isIntroOpnend",false);
+        Boolean isIntroActivityOpnendBefore = pref.getBoolean("isIntroOpened",false);
         return  isIntroActivityOpnendBefore;
     }
 }

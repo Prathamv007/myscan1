@@ -42,7 +42,7 @@
 
         </activity>
         <activity android:name=".ocr.MainActivityOcr"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
 
