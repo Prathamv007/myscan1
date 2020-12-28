@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="false"
     android:background="@android:color/white"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     android:orientation="vertical">
 
     <Button

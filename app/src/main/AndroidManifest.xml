@@ -41,7 +41,10 @@
             -->
 
         </activity>
-        <activity android:name=".ocr.MainActivityOcr"></activity>
+        <activity android:name=".ocr.MainActivityOcr"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        </activity>
 
         <activity android:name=".MainActivity">
             <meta-data
