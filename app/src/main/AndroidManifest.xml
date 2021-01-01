@@ -15,7 +15,7 @@
         android:roundIcon="@drawable/show_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".qrScanActivity"></activity>
+        <activity android:name=".qrcodes"></activity>
         <activity android:name=".PdfActivity" />
         <activity android:name=".Nav_ocr" />
         <activity
@@ -33,6 +33,9 @@
             </intent-filter>
 
             <meta-data
+                android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+                android:value="barcode" />
+            <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
             <!--
@@ -44,7 +47,7 @@
         </activity>
         <activity
             android:name=".ocr.MainActivityOcr"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".MainActivity">
             <meta-data
                 android:name="com.google.android.gms.vision.DEPENDENCIES"
