@@ -32,7 +32,7 @@ public class ScanActivity extends Activity implements IScanner, ComponentCallbac
 
             // set an exit transition
             Fade fade = new Fade();
-            fade.setDuration(1000);
+            fade.setDuration(0000);
 
             getWindow().setEnterTransition(fade);
             getWindow().setExitTransition(fade);
