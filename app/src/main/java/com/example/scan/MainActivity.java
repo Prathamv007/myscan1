@@ -173,6 +173,8 @@ t.setDrawerIndicatorEnabled(true);
 
     public void qrScan(MenuItem mi) {
         Toast.makeText(getApplicationContext(), "Working", Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(this,qrcodes.class);
+        startActivity(intent);
     }
 
     public void Ocr(MenuItem mi) {
