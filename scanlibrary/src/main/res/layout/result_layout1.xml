@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="false"
+    android:background="@android:color/white"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header"
+        android:padding="10dp">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_back"
+            android:background="@null" />
+
+        <Button
+            android:id="@+id/doneButton"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_toStartOf="@+id/pageNumber"
+            android:background="@drawable/ic_outline_save_color_24px"
+            android:textColor="@android:color/white"
+            android:layout_marginRight="15dp"/>
+
+        <TextView
+            android:id="@+id/pageNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/addBtn"
+            android:paddingRight="25dp"
+            android:layout_marginRight="10dp"
+            android:paddingBottom="20dp"
+            android:text="1"
+            android:padding="10dp"
+            android:textSize="15dp"
+            android:textAlignment="center"
+            android:textColor="#FDFDFD"/>
+
+
+        <Button
+            android:id="@+id/addBtn"
+            android:layout_width="85dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/capsule_bg"
+            android:text="Next"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"/>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_gravity="center"
+        android:layout_above="@id/topBar"
+        android:layout_margin="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/scannedImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp" />
+
+        </RelativeLayout>
+    </FrameLayout>
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="#3F69FF"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/original"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/ic_image"
+            android:padding="10dp"
+            android:text="Original"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/magicColor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/ic_enhamce_image"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:text="Auto"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/grayMode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/ic_gray"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:text="Gray"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/BWMode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/ic_black_and_white"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:text="B/W"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</RelativeLayout>
