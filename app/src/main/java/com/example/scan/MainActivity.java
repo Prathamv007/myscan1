@@ -1,11 +1,13 @@
 package com.example.scan;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.icu.text.SimpleDateFormat;
@@ -27,6 +29,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -61,6 +65,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int PERMISSION_REQUEST_CODE = 200;
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
@@ -241,22 +246,41 @@ t.setDrawerIndicatorEnabled(true);
         builder.show();
     }
 
-    public void openCamera(View v){
-        scannedBitmaps.clear();
+    public void openCamera(View v) {
+        if (checkPermission()) {
+            scannedBitmaps.clear();
 
-        String stagingDirPath = getApplicationContext().getString( R.string.base_staging_path );
-        String scanningTmpDirectory =  getApplicationContext().getString( R.string.base_scantmp_path);
+            String stagingDirPath = getApplicationContext().getString(R.string.base_staging_path);
+            String scanningTmpDirectory = getApplicationContext().getString(R.string.base_scantmp_path);
 
-        FileIOUtils.clearDirectory( stagingDirPath );
-        FileIOUtils.clearDirectory( scanningTmpDirectory );
+            FileIOUtils.clearDirectory(stagingDirPath);
+            FileIOUtils.clearDirectory(scanningTmpDirectory);
 
 
-        Intent intent = new Intent(this, ScanActivity.class);
-        intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, ScanConstants.OPEN_CAMERA);
+            Intent intent = new Intent(this, ScanActivity.class);
+            intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, ScanConstants.OPEN_CAMERA);
 
-        //startActivityForResult(intent, ScanConstants.START_CAMERA_REQUEST_CODE);
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this);
-        startActivityForResult(intent, ScanConstants.START_CAMERA_REQUEST_CODE, options.toBundle());
+            //startActivityForResult(intent, ScanConstants.START_CAMERA_REQUEST_CODE);
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this);
+            startActivityForResult(intent, ScanConstants.START_CAMERA_REQUEST_CODE, options.toBundle());
+        }
+        else{
+            requestPermission();
+        }
+    }
+    private void requestPermission() {
+
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.CAMERA},
+                PERMISSION_REQUEST_CODE);
+    }
+    private boolean checkPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted
+            return false;
+        }
+        return true;
     }
 
 //    public void openGallery(View v){
