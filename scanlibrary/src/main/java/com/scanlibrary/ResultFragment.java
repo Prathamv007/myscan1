@@ -47,7 +47,7 @@ public class ResultFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.new_, null);
+        view = inflater.inflate(R.layout.result_layout1, null);
         init();
         return view;
     }

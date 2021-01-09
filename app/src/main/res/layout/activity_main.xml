@@ -65,8 +65,8 @@
                 app:maxImageSize="38sp"
                 app:tint="@color/white" />
 
-            <LinearLayout
-                android:id="@+id/empty_list"
+            <!--<LinearLayout
+                android:id="@+id/empty"
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -99,7 +99,7 @@
                     android:paddingRight="40dp"
                     android:gravity="center_horizontal" />
 
-            </LinearLayout>
+            </LinearLayout>-->
 
 
         </RelativeLayout>

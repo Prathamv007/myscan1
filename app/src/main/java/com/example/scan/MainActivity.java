@@ -128,7 +128,7 @@ t.setDrawerIndicatorEnabled(true);
         final String scanningTmpDirectory =  getApplicationContext().getString( R.string.base_scantmp_path);
         FileIOUtils.mkdir( scanningTmpDirectory );
 
-        this.emptyLayout = findViewById(R.id.empty_list);
+        //this.emptyLayout = findViewById(R.id.empty);
 
         viewModel = ViewModelProviders.of(this).get(DocumentViewModel.class);
 
@@ -140,12 +140,12 @@ t.setDrawerIndicatorEnabled(true);
             @Override
             public void onChanged(@Nullable List<Document> documents) {
 
-                if( documents.size() > 0 ){
+                /*if( documents.size() > 0 ){
                     emptyLayout.setVisibility(View.GONE);
 
                 } else {
                     emptyLayout.setVisibility(View.VISIBLE);
-                }
+                }*/
 
                 fileAdapter.setData(documents);
             }
@@ -173,8 +173,8 @@ t.setDrawerIndicatorEnabled(true);
 
     public void qrScan(MenuItem mi) {
         Toast.makeText(getApplicationContext(), "Working", Toast.LENGTH_SHORT).show();
-        Intent intent=new Intent(this,qrcodes.class);
-        startActivity(intent);
+        /*Intent intent=new Intent(this,qrcodes.class);
+        startActivity(intent);*/
     }
 
     public void Ocr(MenuItem mi) {
@@ -195,7 +195,7 @@ t.setDrawerIndicatorEnabled(true);
         startActivityForResult(intent, 0);
     }
 
-    public void dialog()
+    /*public void dialog()
     {
         final CharSequence[] options = {"Take Photo", "choose from Gallery", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -239,7 +239,7 @@ t.setDrawerIndicatorEnabled(true);
             }
         });
         builder.show();
-    }
+    }*/
 
     public void openCamera(View v){
         scannedBitmaps.clear();
@@ -438,6 +438,7 @@ t.setDrawerIndicatorEnabled(true);
             intent.putExtra("mFrom", "Camera");
             startActivity(intent);
         }
+        
 
         if (requestCode == 3) {
             if (resultCode == Activity.RESULT_OK) {

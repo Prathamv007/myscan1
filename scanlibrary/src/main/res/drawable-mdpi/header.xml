@@ -4,7 +4,7 @@
 
     <gradient android:angle="0"
         android:endColor="@color/polygonViewCircleStrokeColor"
-        android:startColor="@color/colorPrimaryDark"/>
+        android:startColor="#2C53C7"/>
 
 
 
