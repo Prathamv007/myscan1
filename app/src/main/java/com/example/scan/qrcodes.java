@@ -1,3 +1,4 @@
+/*
 package com.example.scan;
 
 import androidx.annotation.NonNull;
@@ -180,4 +181,4 @@ public class qrcodes extends AppCompatActivity {
                 .build();
         return FirebaseVisionImage.fromByteArray(data,metadata);
     }
-}
+}*/

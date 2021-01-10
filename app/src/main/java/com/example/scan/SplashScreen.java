@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.scan.Intro.IntroActivity;
 import com.example.scan.persistance.DocumentDatabase;
 
 public class SplashScreen extends AppCompatActivity {
@@ -42,7 +43,7 @@ public class SplashScreen extends AppCompatActivity {
 
                 @Override
                 public void run() {
-                    Intent i = new Intent(SplashScreen.this, MainActivity.class);
+                    Intent i = new Intent(SplashScreen.this, IntroActivity.class);
                     startActivity(i);
                     finish();
 
@@ -53,7 +54,7 @@ public class SplashScreen extends AppCompatActivity {
 
    private boolean restorePrefData() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
-        Boolean isIntroActivityOpnendBefore = pref.getBoolean("isIntroOpened",false);
-        return  isIntroActivityOpnendBefore;
+        Boolean isIntroActivityOpenedBefore = pref.getBoolean("isIntroOpened",false);
+        return  isIntroActivityOpenedBefore;
     }
 }

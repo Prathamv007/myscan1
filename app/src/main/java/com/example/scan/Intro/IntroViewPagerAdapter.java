@@ -1,4 +1,4 @@
-package com.example.scan.intro;
+package com.example.scan.Intro;
 
 import android.content.Context;
 import android.view.LayoutInflater;

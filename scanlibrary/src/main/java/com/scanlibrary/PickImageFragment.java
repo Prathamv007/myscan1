@@ -23,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
 
@@ -66,6 +67,7 @@ public class PickImageFragment extends Fragment {
             handleIntentPreference();
         } else {
             getActivity().finish();
+
         }
     }
 

@@ -1,5 +1,4 @@
-/*
-package com.example.scan;
+package com.example.scan.Intro;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,15 +14,15 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.scan.intro.IntroViewPagerAdapter;
-import com.example.scan.intro.ScreenItem;
+import com.example.scan.MainActivity;
+import com.example.scan.R;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Intro_Activity extends AppCompatActivity {
+public class IntroActivity extends AppCompatActivity {
 
     private ViewPager screenPager;
     IntroViewPagerAdapter introViewPagerAdapter;
@@ -47,7 +46,7 @@ public class Intro_Activity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-        //setContentView(R.layout.activityintro);
+        setContentView(R.layout.activity_intro);
 
         // ini views
         btnNext = findViewById(R.id.btn_next);
@@ -190,4 +189,3 @@ public class Intro_Activity extends AppCompatActivity {
 
 
 }
-*/

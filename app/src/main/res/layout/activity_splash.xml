@@ -4,49 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   >
+    android:background="@color/colorPrimary"
+    >
 
-    <ImageView
-        android:id="@+id/splash_logo"
-        android:layout_width="236dp"
-        android:layout_height="348dp"
+    <TextView
+        android:id="@+id/textview12"
+        android:layout_width="260dp"
+        android:layout_height="137dp"
+        android:fontFamily="@font/font_screen"
+        android:text="mScan"
         android:layout_centerInParent="true"
-        android:src="@drawable/show_icon"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="244dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:gravity="bottom"
-        android:orientation="horizontal">
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-thin"
-            android:text="el docer "
-            android:textSize="30sp" />
-
-        <!--<TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
-            android:text="Scan"
-            android:textSize="30sp" />-->
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-    </LinearLayout>
-
+        android:textAlignment="center"
+        android:textColor="@color/colorBackground"
+        android:textSize="98.6dp" />
 </RelativeLayout>
