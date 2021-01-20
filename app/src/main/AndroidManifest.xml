@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.scan">
+    package="com.override011.scan">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-        <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
 
     <application
@@ -17,7 +17,7 @@
         android:roundIcon="@drawable/icon_main"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--<activity android:name=".qrcodes"></activity>-->
+        <activity android:name=".qrcodes"/>
         <activity android:name=".PdfActivity" />
         <activity android:name=".Nav_ocr" />
         <activity
@@ -87,7 +87,7 @@
         -->
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.scan.provider"
+            android:authorities="com.override011.scan.provider"
             android:exported="false"
             android:grantUriPermissions="true" />
     </application>

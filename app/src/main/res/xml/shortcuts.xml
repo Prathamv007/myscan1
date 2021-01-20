@@ -9,8 +9,8 @@
 
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.example.scan.SplashScreen"
-            android:targetPackage="com.example.scan" />
+            android:targetClass="com.override011.scan.SplashScreen"
+            android:targetPackage="com.override011.scan" />
 
         <categories android:name="android.shortcut.conversation" />
     </shortcut>

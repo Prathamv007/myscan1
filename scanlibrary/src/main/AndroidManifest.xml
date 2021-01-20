@@ -23,7 +23,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.scan.provider"
+            android:authorities="com.override011.scan.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
